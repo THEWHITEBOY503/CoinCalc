@@ -1,5 +1,6 @@
-﻿//PLEASE READ:
+//PLEASE READ:
 //IT IS VERY IMPORTANT YOU EDIT THIS FILE TO INCLUDE THE PROPER FILE PATHS, CURRENCY EXCHANGE RATES, AND VARIABLES.
+//THE BANK AND STORE FUNCTIONS DON'T ACTUALLY BUY OR DO ANYTHING REALLY. THEY'RE JUST FOR FUN.
 
 //Define the system libraries needed for compiling.
 using System;
@@ -108,14 +109,15 @@ namespace CurrencyCalc
                 Console.WriteLine(">2) exit");
                 Console.Write(">");
                 BankOperation = Convert.ToDouble(Console.ReadLine());
-                //Deposit into the account.
+                //"Deposit" into the account.
                 if (BankOperation == 1)
                 {
                     Console.WriteLine("Please enter how much C to deposit.");
                     Console.Write(">");
                     Deposit = Convert.ToDouble(Console.ReadLine());
                     double AfterDeposit = Convert.ToDouble(bank) + Deposit;
-                    //Sends the Currency to the bank account
+                    //"Sends" the Currency to the bank account
+                    //Make sure to edit this to the proper location for the bank file
                     System.IO.File.WriteAllText(@"C:\Users\conner smith\source\repos\CalcBase\bank.txt", Convert.ToString(AfterDeposit));
                     Console.WriteLine("Deposit Successful!");
                     System.Threading.Thread.Sleep(
@@ -133,7 +135,8 @@ namespace CurrencyCalc
                         Console.Write(">");
                         Withdraw = Convert.ToDouble(Console.ReadLine());
                         double AfterWithdraw = Convert.ToDouble(bank) - Withdraw;
-                        //Get the Currency out of the bank account
+                        //"Get" the Currency out of the bank account
+                        //Make sure to edit this to the proper location for the bank file
                         System.IO.File.WriteAllText(@"C:\Users\conner smith\source\repos\CalcBase\bank.txt", Convert.ToString(AfterWithdraw));
                         Console.WriteLine("Withdraw Successful!");
                         System.Threading.Thread.Sleep(
@@ -182,7 +185,8 @@ namespace CurrencyCalc
                     ShopConfirm = Convert.ToDouble(Console.ReadLine());
                     if (ShopConfirm == 1)
                     {
-                        //Purchase the item and send it to the user
+                        //"Purchase" the item and send it to the user
+                        //Make sure to edit this to the proper location for the bank file
                         System.IO.File.WriteAllText(@"C:\Users\conner smith\source\repos\CalcBase\NCBANK.txt", Convert.ToString(AfterShop));
                         Console.WriteLine("Your item has been purchased. Thank you!");
                         System.Threading.Thread.Sleep(
