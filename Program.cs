@@ -1,6 +1,7 @@
-//PLEASE READ:
-//IT IS VERY IMPORTANT YOU EDIT THIS FILE TO INCLUDE THE PROPER FILE PATHS, CURRENCY EXCHANGE RATES, AND VARIABLES.
-//THE BANK AND STORE FUNCTIONS DON'T ACTUALLY BUY OR DO ANYTHING REALLY. THEY'RE JUST FOR FUN.
+/*PLEASE READ:
+IT IS VERY IMPORTANT YOU EDIT THIS FILE TO INCLUDE THE PROPER FILE PATHS, CURRENCY EXCHANGE RATES, AND VARIABLES.
+THE BANK AND STORE FUNCTIONS DON'T ACTUALLY BUY OR DO ANYTHING REALLY. THEY'RE JUST FOR FUN.
+*/
 
 //Define the system libraries needed for compiling.
 using System;
@@ -44,14 +45,18 @@ namespace CurrencyCalc
 
 
         {
-            //Defines the file where the bank account is stored.
-            //Make a file called "bank.txt" in the folder this app is in then copy the path here and everywhere else where a file path is seen.
-            //After you make the file, open it in notepad and type in how much currency you want to start with then save. 
+            /*
+            Defines the file where the bank account is stored.
+            Make a file called "bank.txt" in the folder this app is in then copy the path here and everywhere else where a file path is seen.
+            After you make the file, open it in notepad and type in how much currency you want to start with then save. 
+            */
             string bank = System.IO.File.ReadAllText(@"C:\Users\conner smith\source\repos\CalcBase\bank.txt");
 
-            //Set the rate of exchange for your currency.
-            //If $1 is worth more than one of your currency, the rate should be a normal number.
-            //If $1 is worth less than one of your currency, the rate should be a lower than zero decimal.
+            /*
+            Set the rate of exchange for your currency.
+            If $1 is worth more than one of your currency, the rate should be a normal number.
+            If $1 is worth less than one of your currency, the rate should be a lower than zero decimal.
+            */
             double CurrencyRate = 0.64;
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -159,7 +164,7 @@ namespace CurrencyCalc
             //Currency shop
             if (Operation == 4)
             {
-                //Connects to the shop and see what item is being sold.
+                //"Connects" to the shop and see what item is being sold. (There is no acutal connection)
                 Console.WriteLine("Loading. Please Wait...");
                 System.Threading.Thread.Sleep(
                 (int)System.TimeSpan.FromSeconds(5).TotalMilliseconds);
