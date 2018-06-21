@@ -33,6 +33,8 @@ namespace CoinCalc
 
     {
         //Define all the variables we will need.
+        private static string CurrencySign;
+        private static string CurrencyName;
         private static double CurrencyInput;
         private static double CurrencyOutput;
         private static double DollarsInput;
@@ -70,8 +72,11 @@ namespace CoinCalc
             */
             double Rate = 1000;
 
+            //Set the name and symbol for your currency here
+            string CurrencySign = "C";
+            string CurrencyName = "Currency";
 
-            Console.WriteLine(Rate);
+
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Welcome to CoinCalc!");
             Console.WriteLine("Now loading...");
@@ -79,10 +84,10 @@ namespace CoinCalc
             (int)System.TimeSpan.FromSeconds(5).TotalMilliseconds);
             Console.ForegroundColor = ConsoleColor.White;
             //Choose what to do
-            Console.WriteLine("1) Dollars to Currency");
-            Console.WriteLine("2) Currency to Dollars");
-            Console.WriteLine("3) Currency Bank");
-            Console.WriteLine("4) Currency Shop");
+            Console.WriteLine("1) Dollars to " + CurrencyName);
+            Console.WriteLine("2) " + CurrencyName + " to Dollars");
+            Console.WriteLine("3) " + CurrencyName + " Bank");
+            Console.WriteLine("4) " + CurrencyName + " Shop");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("5+) Exit");
             Console.ForegroundColor = ConsoleColor.White;
@@ -99,7 +104,7 @@ namespace CoinCalc
                 //The USD value is converted into your currency.
                 double CurrenyOutput = DollarsInput * Rate;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("$" + DollarsInput + " is worth " + CurrencyOutput + "C");
+                Console.WriteLine("$" + DollarsInput + " is worth " + CurrencyOutput + CurrencySign);
                 System.Threading.Thread.Sleep(
                 (int)System.TimeSpan.FromSeconds(5).TotalMilliseconds);
                 Console.ForegroundColor = ConsoleColor.Gray;
@@ -110,12 +115,12 @@ namespace CoinCalc
             if (Operation == 2)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("Input the amount of Currency. ");
+                Console.Write("Input the amount of " + CurrencyName + " ");
                 CurrencyInput = Convert.ToDouble(Console.ReadLine());
                 //The currency value is converted into USD
                 double DollarsOutput = CurrencyInput / Rate;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(CurrencyInput + "C is worth $" + DollarsOutput);
+                Console.WriteLine(CurrencyInput + CurrencySign + " is worth $" + DollarsOutput);
                 System.Threading.Thread.Sleep(
                 (int)System.TimeSpan.FromSeconds(5).TotalMilliseconds);
                 Console.ForegroundColor = ConsoleColor.Gray;
@@ -125,10 +130,10 @@ namespace CoinCalc
             //Currency bank
             if (Operation == 3)
             {
-                Console.WriteLine("You have " + bank + "C in your bank account.");
+                Console.WriteLine("You have " + bank + CurrencySign + " in your bank account.");
                 //Show the USD worth of your curreny in the bank account. Because why not.
                 double BankWorth = Convert.ToDouble(bank) / Rate;
-                Console.WriteLine("You have $" + BankWorth + " worth of Currency in your bank account.");
+                Console.WriteLine("You have $" + BankWorth + " worth of " + CurrencyName + " in your bank account.");
                 Console.WriteLine("1) Deposit");
                 Console.WriteLine("2) Withdraw");
                 Console.WriteLine("3+) exit");
@@ -137,13 +142,13 @@ namespace CoinCalc
                 //Deposit into the account.
                 if (BankOperation == 1)
                 {
-                    Console.WriteLine("Please enter how much C to deposit.");
+                    Console.WriteLine("Please enter how much " + CurrencySign + " to deposit.");
                     Console.Write(">");
                     Deposit = Convert.ToDouble(Console.ReadLine());
                     double AfterDeposit = Convert.ToDouble(bank) + Deposit;
                     //Sends the currency to the bank account
-                    System.IO.File.WriteAllText(@"cBANK.txt", Convert.ToString(AfterDeposit));
-                    string NewBank = System.IO.File.ReadAllText(@"cBANK.txt");
+                    File.WriteAllText(@"cBANK.txt", Convert.ToString(AfterDeposit));
+                    string NewBank = File.ReadAllText(@"cBANK.txt");
                     if (Convert.ToDouble(NewBank) == AfterDeposit)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -165,13 +170,13 @@ namespace CoinCalc
                     //Withdraw currency from the bank account
                     if (BankOperation == 2)
                     {
-                        Console.WriteLine("Please enter how much c to withdraw.");
+                        Console.WriteLine("Please enter how much " + CurrencySign + " to withdraw.");
                         Console.Write(">");
                         Withdraw = Convert.ToDouble(Console.ReadLine());
                         double AfterWithdraw = Convert.ToDouble(bank) - Withdraw;
                         //Get the currency out of the bank account
-                        System.IO.File.WriteAllText(@"cBANK.txt", Convert.ToString(AfterWithdraw));
-                        string NewBank = System.IO.File.ReadAllText(@"cBANK.txt");
+                        File.WriteAllText(@"cBANK.txt", Convert.ToString(AfterWithdraw));
+                        string NewBank = File.ReadAllText(@"cBANK.txt");
                         if (Convert.ToDouble(NewBank) == AfterWithdraw)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -212,10 +217,10 @@ namespace CoinCalc
                 double ShopPrice = 1234;
                 //Set the name of the item here
                 string ShopItem = "Shop item";
-                Console.WriteLine(ShopItem + " (" + ShopPrice + "C)");
+                Console.WriteLine(ShopItem + " (" + ShopPrice + CurrencySign + ")");
                 double ShopItemWorth = ShopPrice / Rate;
                 Console.WriteLine("This item is worth $" + ShopItemWorth);
-                Console.WriteLine("You have " + bank + "C in your bank account.");
+                Console.WriteLine("You have " + bank + CurrencySign + " in your bank account.");
                 Console.WriteLine("1) Buy");
                 Console.WriteLine("2) No thanks");
                 Console.Write(">");
@@ -225,7 +230,7 @@ namespace CoinCalc
                 if (ShopChoice == 1)
                 {
                     double AfterShop = Convert.ToDouble(bank) - ShopPrice;
-                    Console.WriteLine("You will have " + AfterShop + "C left after this purchase.");
+                    Console.WriteLine("You will have " + AfterShop + CurrencySign + " left after this purchase.");
                     Console.WriteLine("1) Buy");
                     Console.WriteLine("2+) Cancel");
                     Console.Write(">");
@@ -235,8 +240,8 @@ namespace CoinCalc
                         if (Convert.ToDouble(bank) >= ShopPrice)
                         {
                             //Purchase the item and send it to the user
-                            System.IO.File.WriteAllText(@"cBANK.txt", Convert.ToString(AfterShop));
-                            string NewBank = System.IO.File.ReadAllText(@"cBANK.txt");
+                            File.WriteAllText(@"cBANK.txt", Convert.ToString(AfterShop));
+                            string NewBank = File.ReadAllText(@"cBANK.txt");
                             if (Convert.ToDouble(NewBank) == AfterShop)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
@@ -266,7 +271,7 @@ namespace CoinCalc
                             System.Threading.Thread.Sleep(
                             (int)System.TimeSpan.FromSeconds(5).TotalMilliseconds);
                             System.Environment.Exit(1);
-                        } 
+                        }
 
                     }
 
