@@ -266,7 +266,7 @@ namespace CoinCalc
                             System.Threading.Thread.Sleep(
                             (int)System.TimeSpan.FromSeconds(5).TotalMilliseconds);
                             System.Environment.Exit(1);
-                        }
+                        } 
 
                     }
 
