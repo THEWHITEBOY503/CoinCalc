@@ -69,6 +69,12 @@ namespace CoinCalc
             Set the rate of exchange for your currency.
             If $1 is worth more than one of your currency, the rate should be a normal number.
             If $1 is worth less than one of your currency, the rate should be a lower than 1 decimal.
+
+            Examples:
+            1000C = $1
+            double Rate = 1000;
+            .50C = $1
+            double Rate = .50;
             */
             double Rate = 1000;
 
