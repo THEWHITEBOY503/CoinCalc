@@ -12,7 +12,7 @@ Make a new text file called "cBANK.txt" somewhere on your computer and type a 0 
 In every place where you see "cBANK.txt", replace that with the file path to your cBANK.txt file.
 If you are on Mac, move the file into the bin/debug/ folder of the project and leave the name as "cBANK.TXT"
 Compile and run.
-For questions and support, email me at conner@smith.net or talk to me on Discord: @conner.#1234
+For questions and support, email me at conner@smith.net or talk to me on Discord: @conner#1234
  */
 
 //Define the system libraries needed for compiling.
